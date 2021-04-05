@@ -1,3 +1,5 @@
 fun main(args: Array<String>) {
-    println("Hello World!")
+
+    Yahtzee.runGame(3)
+    println("Special thanks to colleague Mrganić for his magnanimous help")
 }

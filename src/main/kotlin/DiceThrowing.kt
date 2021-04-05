@@ -3,7 +3,10 @@
 object DiceThrowing {
     val dice = listOf(Die(), Die(), Die(), Die(), Die(), Die())
 
-    fun throwDice() = dice.forEach { Die -> if (!Die.locked) Die.throwDie()}
+    fun throwDice() {
+        dice.forEach { Die -> if (!Die.locked)
+            Die.value = Die.throwDie()}
+    }
 
     fun lockDiceByValue (diceToLock: MutableList<String>) {
         dice.forEach {
@@ -14,14 +17,14 @@ object DiceThrowing {
         }
     }
 
-    /*fun lockDiceByIndex (diceToLock: MutableList<String>) {
+    fun lockDiceByIndex (diceToLock: MutableList<String>) {
         dice.forEach {
             if (diceToLock.contains((dice.indexOf(it)+1).toString())&&!it.locked){
                 it.locked=true
                 diceToLock.remove(it.value.toString())
             }
         }
-    }*/
+    }
 
 
     fun unlockDiceByValue (diceToUnlock: MutableList<String>) {
@@ -33,21 +36,24 @@ object DiceThrowing {
         }
     }
 
-    /*fun unlockDiceByIndex (diceToUnlock: MutableList<String>) {
+    fun unlockDiceByIndex (diceToUnlock: MutableList<String>) {
         dice.forEach {
             if (diceToUnlock.contains((dice.indexOf(it)+1).toString())&&it.locked){
                 it.locked=false
                 diceToUnlock.remove(it.value.toString())
             }
         }
-    }*/
+    }
 
     fun reloadDice() {
         dice.forEach{
             it.locked=false
         }
     }
-
+    fun printDiceValues() {
+        println("Dice values are: ")
+        dice.forEach { Die -> println("locked: ${Die.locked}\t-\tDie value: ${Die.value}") }
+    }
     fun getDiceValues(): List<String> {
         val outList = mutableListOf<String>()
         dice.forEach { Die -> outList.add(Die.value.toString()) }
